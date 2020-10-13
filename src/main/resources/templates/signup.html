@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layouts/common}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container mt-3">
+		<th:block layout:fragment="content">
+			<div class="jumbotron mt-5">
+			<div class="container col-md-4">
+				<form action="#" th:action="@{/signup}" method="post" th:object="${user}">
+					<p th:if="${#fields.hasErrors('*')}" th:errors="*{*}"></p>
+					<div class="form-group">
+						<label >User name</label> <input th:field="*{login}"
+							type="text" name="username" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Password</label> <input
+						th:field="*{password}" type="password" name="password" class="form-control">
+					</div>
+					<button type="submit" class="btn btn-primary float-right">Signup</button>
+				</form>
+			</div>
+			</div>
+		</th:block>
+	</div>
+	
+</body>
+</html>

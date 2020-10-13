@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layouts/common}">
+<head>
+<meta charset="ISO-8859-1">
+<title>home</title>
+</head>
+<body>
+	<!--
+
+ 	isAuthenticated() ==> only login user can see 
+	isAnonymous()==> everyone can see 
+	hasAnyRow('ADMIN','MEMBER')==> both can see
+	hasRow('MEMBER') ==> only one member can see
+	<form action="#" th:action="@{/logout}"  method="post" sec:authorize="isAuthenticated()">
+	
+	 if you want to see login user name we can use use sec:authentication="name" and 
+	you can use sec:authentication = "principal.authorities" for login Role.  
+	<div sec:authentication="name"></div>
+		<input type="submit" value="logout" />
+	</form>
+
+ -->
+
+	<div class="container mr-5">
+		<th:block layout:fragment="title">
+			<div class="container mt-4">
+				<nav class="navbar navbar-expand-lg navbar-light bg-secondary ">
+					<a class="navbar-brand text-white" href="#">Security</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbarNavAltMarkup"
+						aria-controls="navbarNavAltMarkup" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse ">
+						<div class="navbar-nav">
+							<a class="navbar-brand  text-white" href="#">Home </a>
+						</div>
+					</div>
+					<div class="text-info" sec:authentication="name"></div>
+					<form action="#" th:action="@{/logout}" method="post"
+						sec:authorize="isAuthenticated()">
+						<div class="bg-secondary">
+							<input class="text-info" type="submit" value="logout" />
+						</div>
+					</form>
+				</nav>
+			</div>
+		</th:block>
+
+	</div>
+
+	<th:block layout:fragment="content">
+<div class="container"><a th:href="@{admin/member}"><h1>Admin Management</h1></a></div>
+	</th:block>
+
+</body>
+</html>
